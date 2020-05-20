@@ -91,11 +91,32 @@ public class PhonInfoServiceImpl implements IPhoneInfoService {
     private PhoneInfoExample initQryParam(Map map,boolean initPage){
         PhoneInfoExample example = new PhoneInfoExample();
         PhoneInfoExample.Criteria criteria = example.createCriteria();
-        if (initPage && map.containsKey("status") && map.get("status") != null){
+        if (map.containsKey("bossPrestoreDesc")){
+            example.setOrderByClause("boss_prestore desc");
+        }
+        if (map.containsKey("bossPrestoreAsc")){
+            example.setOrderByClause("boss_prestore asc");
+        }
+        if (map.containsKey("phoneNumber")){
+            criteria.andPhoneNumberLike("%"+map.get("phoneNumber")+"%");
+        }
+        if (map.containsKey("status") && map.get("status") != null){
             criteria.andStatusEqualTo((Integer)map.get("status"));
         }
-        if (map.containsKey("currentIndex") && map.containsKey("pageSize")){
-            PageHelper.startPage((Integer) map.get("currentIndex"),(Integer) map.get("pageSize"));
+        if (map.containsKey("mno") && map.get("mno") != null){
+            criteria.andMnoEqualTo((Integer)map.get("mno"));
+        }
+        if (map.containsKey("rank") && map.get("rank") != null){
+            criteria.andRankEqualTo((String)map.get("rank"));
+        }
+        if (map.containsKey("provinceId") && map.get("provinceId") != null){
+            criteria.andProvinceIdEqualTo(Integer.parseInt((String)map.get("provinceId")));
+        }
+        if (map.containsKey("cityId") && map.get("cityId") != null){
+            criteria.andCityIdEqualTo(Integer.parseInt((String)map.get("cityId")));
+        }
+        if (map.containsKey("currentPage") && map.containsKey("pageSize")){
+            PageHelper.startPage((Integer) map.get("currentPage"),(Integer) map.get("pageSize"));
         }
         return example;
     }

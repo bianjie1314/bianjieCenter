@@ -54,6 +54,7 @@
 <!--               enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"/>-->
 
         <table tableName="phone_info"></table>
+<!--        <table tableName="data_dictionary"></table>-->
 
 
     </context>

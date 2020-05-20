@@ -7,6 +7,8 @@ public class PhoneInfo {
 
     private String phoneNumber;
 
+    private String rank;
+
     private Integer mno;
 
     private Integer status;
@@ -45,6 +47,14 @@ public class PhoneInfo {
 
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber == null ? null : phoneNumber.trim();
+    }
+
+    public String getRank() {
+        return rank;
+    }
+
+    public void setRank(String rank) {
+        this.rank = rank == null ? null : rank.trim();
     }
 
     public Integer getMno() {

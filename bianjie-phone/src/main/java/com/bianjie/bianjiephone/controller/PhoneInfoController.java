@@ -3,8 +3,9 @@ package com.bianjie.bianjiephone.controller;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.bianjie.bianjiephone.controller.Base.BaseController;
+import com.bianjie.common.PageRequest;
+import com.bianjie.common.PageResult;
 import com.bianjie.common.enums.MnoType;
-import com.bianjie.common.response.RespBody;
 import com.bianjie.common.response.RespBodyBuilder;
 import com.bianjie.orm.pojo.PhoneInfo;
 import com.bianjie.service.IPhoneInfoService;
@@ -28,13 +29,17 @@ public class PhoneInfoController extends BaseController {
     IPhoneInfoService iPhoneInfoService;
 
     @RequestMapping("/list")
-    public String qryPhoneList(Map map){
-        logger.info("list -- param:{}",map.toString());
+    public String qryPhoneList(@RequestBody PageRequest pageParam){
+        logger.info("list -- param:{}",JSONObject.toJSONString(pageParam.toString()));
         JSONArray jsonArray = new JSONArray();
         try{
-            long count = iPhoneInfoService.countByMap(map);
+            Map paramContent = pageParam.getParam();
+            paramContent.put("currentPage",pageParam.getCurrentPage());
+            paramContent.put("pageSize",pageParam.getPageSize());
+            long count = iPhoneInfoService.countByMap(paramContent);
+            pageParam.setTotalResult(count);
             if (count > 0){
-                List<PhoneInfo> phoneInfoList = iPhoneInfoService.selectByMap(map);
+                List<PhoneInfo> phoneInfoList = iPhoneInfoService.selectByMap(paramContent);
                 for (PhoneInfo info:phoneInfoList){
                     JSONObject itemJson = new JSONObject();
                     itemJson.put("phoneNumber",info.getPhoneNumber());
@@ -49,7 +54,7 @@ public class PhoneInfoController extends BaseController {
             logger.info("list -- error:{}",e.getMessage());
         }
         logger.info("list -- reply:{}",jsonArray);
-        return RespBodyBuilder.toSuccessWithObject(jsonArray);
+        return RespBodyBuilder.toSuccessWithObject(new PageResult<JSONArray>(jsonArray,pageParam));
     }
 
 

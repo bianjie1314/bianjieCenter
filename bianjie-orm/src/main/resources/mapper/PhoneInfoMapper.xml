@@ -4,6 +4,7 @@
   <resultMap id="BaseResultMap" type="com.bianjie.orm.pojo.PhoneInfo" >
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="phone_number" property="phoneNumber" jdbcType="VARCHAR" />
+    <result column="rank" property="rank" jdbcType="VARCHAR" />
     <result column="mno" property="mno" jdbcType="INTEGER" />
     <result column="status" property="status" jdbcType="INTEGER" />
     <result column="boss_prestore" property="bossPrestore" jdbcType="VARCHAR" />
@@ -76,7 +77,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, phone_number, mno, status, boss_prestore, province_id, province_name, city_id, 
+    id, phone_number, rank, mno, status, boss_prestore, province_id, province_name, city_id, 
     city_name, create_time, update_time, remark, sale_money, purchase_money
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.bianjie.orm.pojo.PhoneInfoExample" >
@@ -110,16 +111,18 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.bianjie.orm.pojo.PhoneInfo" >
-    insert into phone_info (id, phone_number, mno, 
-      status, boss_prestore, province_id, 
-      province_name, city_id, city_name, 
-      create_time, update_time, remark, 
-      sale_money, purchase_money)
-    values (#{id,jdbcType=INTEGER}, #{phoneNumber,jdbcType=VARCHAR}, #{mno,jdbcType=INTEGER}, 
-      #{status,jdbcType=INTEGER}, #{bossPrestore,jdbcType=VARCHAR}, #{provinceId,jdbcType=INTEGER}, 
-      #{provinceName,jdbcType=VARCHAR}, #{cityId,jdbcType=INTEGER}, #{cityName,jdbcType=VARCHAR}, 
-      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{remark,jdbcType=VARCHAR}, 
-      #{saleMoney,jdbcType=VARCHAR}, #{purchaseMoney,jdbcType=VARCHAR})
+    insert into phone_info (id, phone_number, rank, 
+      mno, status, boss_prestore, 
+      province_id, province_name, city_id, 
+      city_name, create_time, update_time, 
+      remark, sale_money, purchase_money
+      )
+    values (#{id,jdbcType=INTEGER}, #{phoneNumber,jdbcType=VARCHAR}, #{rank,jdbcType=VARCHAR}, 
+      #{mno,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}, #{bossPrestore,jdbcType=VARCHAR}, 
+      #{provinceId,jdbcType=INTEGER}, #{provinceName,jdbcType=VARCHAR}, #{cityId,jdbcType=INTEGER}, 
+      #{cityName,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{remark,jdbcType=VARCHAR}, #{saleMoney,jdbcType=VARCHAR}, #{purchaseMoney,jdbcType=VARCHAR}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.bianjie.orm.pojo.PhoneInfo" >
     insert into phone_info
@@ -129,6 +132,9 @@
       </if>
       <if test="phoneNumber != null" >
         phone_number,
+      </if>
+      <if test="rank != null" >
+        rank,
       </if>
       <if test="mno != null" >
         mno,
@@ -173,6 +179,9 @@
       </if>
       <if test="phoneNumber != null" >
         #{phoneNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="rank != null" >
+        #{rank,jdbcType=VARCHAR},
       </if>
       <if test="mno != null" >
         #{mno,jdbcType=INTEGER},
@@ -227,6 +236,9 @@
       <if test="record.phoneNumber != null" >
         phone_number = #{record.phoneNumber,jdbcType=VARCHAR},
       </if>
+      <if test="record.rank != null" >
+        rank = #{record.rank,jdbcType=VARCHAR},
+      </if>
       <if test="record.mno != null" >
         mno = #{record.mno,jdbcType=INTEGER},
       </if>
@@ -272,6 +284,7 @@
     update phone_info
     set id = #{record.id,jdbcType=INTEGER},
       phone_number = #{record.phoneNumber,jdbcType=VARCHAR},
+      rank = #{record.rank,jdbcType=VARCHAR},
       mno = #{record.mno,jdbcType=INTEGER},
       status = #{record.status,jdbcType=INTEGER},
       boss_prestore = #{record.bossPrestore,jdbcType=VARCHAR},
@@ -293,6 +306,9 @@
     <set >
       <if test="phoneNumber != null" >
         phone_number = #{phoneNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="rank != null" >
+        rank = #{rank,jdbcType=VARCHAR},
       </if>
       <if test="mno != null" >
         mno = #{mno,jdbcType=INTEGER},
@@ -336,6 +352,7 @@
   <update id="updateByPrimaryKey" parameterType="com.bianjie.orm.pojo.PhoneInfo" >
     update phone_info
     set phone_number = #{phoneNumber,jdbcType=VARCHAR},
+      rank = #{rank,jdbcType=VARCHAR},
       mno = #{mno,jdbcType=INTEGER},
       status = #{status,jdbcType=INTEGER},
       boss_prestore = #{bossPrestore,jdbcType=VARCHAR},
