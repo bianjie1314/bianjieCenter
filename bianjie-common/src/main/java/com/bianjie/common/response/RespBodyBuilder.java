@@ -28,7 +28,7 @@ public class RespBodyBuilder {
         return JsonUtil.convertObject2Json(respBody);
     }
 
-    public static String toError(String code, String msg) {
+    public static String toError(int code, String msg) {
         JSONObject error = new JSONObject();
         error.put("errorCode", code);
         error.put("errorMsg", msg);

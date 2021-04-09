@@ -17,6 +17,7 @@
     <result column="remark" property="remark" jdbcType="VARCHAR" />
     <result column="sale_money" property="saleMoney" jdbcType="VARCHAR" />
     <result column="purchase_money" property="purchaseMoney" jdbcType="VARCHAR" />
+    <result column="min_consumer" property="minConsumer" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -78,7 +79,7 @@
   </sql>
   <sql id="Base_Column_List" >
     id, phone_number, rank, mno, status, boss_prestore, province_id, province_name, city_id, 
-    city_name, create_time, update_time, remark, sale_money, purchase_money
+    city_name, create_time, update_time, remark, sale_money, purchase_money, min_consumer
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.bianjie.orm.pojo.PhoneInfoExample" >
     select
@@ -115,14 +116,14 @@
       mno, status, boss_prestore, 
       province_id, province_name, city_id, 
       city_name, create_time, update_time, 
-      remark, sale_money, purchase_money
-      )
+      remark, sale_money, purchase_money, 
+      min_consumer)
     values (#{id,jdbcType=INTEGER}, #{phoneNumber,jdbcType=VARCHAR}, #{rank,jdbcType=VARCHAR}, 
       #{mno,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}, #{bossPrestore,jdbcType=VARCHAR}, 
       #{provinceId,jdbcType=INTEGER}, #{provinceName,jdbcType=VARCHAR}, #{cityId,jdbcType=INTEGER}, 
       #{cityName,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
-      #{remark,jdbcType=VARCHAR}, #{saleMoney,jdbcType=VARCHAR}, #{purchaseMoney,jdbcType=VARCHAR}
-      )
+      #{remark,jdbcType=VARCHAR}, #{saleMoney,jdbcType=VARCHAR}, #{purchaseMoney,jdbcType=VARCHAR}, 
+      #{minConsumer,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.bianjie.orm.pojo.PhoneInfo" >
     insert into phone_info
@@ -172,6 +173,9 @@
       <if test="purchaseMoney != null" >
         purchase_money,
       </if>
+      <if test="minConsumer != null" >
+        min_consumer,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -218,6 +222,9 @@
       </if>
       <if test="purchaseMoney != null" >
         #{purchaseMoney,jdbcType=VARCHAR},
+      </if>
+      <if test="minConsumer != null" >
+        #{minConsumer,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -275,6 +282,9 @@
       <if test="record.purchaseMoney != null" >
         purchase_money = #{record.purchaseMoney,jdbcType=VARCHAR},
       </if>
+      <if test="record.minConsumer != null" >
+        min_consumer = #{record.minConsumer,jdbcType=VARCHAR},
+      </if>
     </set>
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -296,7 +306,8 @@
       update_time = #{record.updateTime,jdbcType=TIMESTAMP},
       remark = #{record.remark,jdbcType=VARCHAR},
       sale_money = #{record.saleMoney,jdbcType=VARCHAR},
-      purchase_money = #{record.purchaseMoney,jdbcType=VARCHAR}
+      purchase_money = #{record.purchaseMoney,jdbcType=VARCHAR},
+      min_consumer = #{record.minConsumer,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -346,6 +357,9 @@
       <if test="purchaseMoney != null" >
         purchase_money = #{purchaseMoney,jdbcType=VARCHAR},
       </if>
+      <if test="minConsumer != null" >
+        min_consumer = #{minConsumer,jdbcType=VARCHAR},
+      </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
@@ -364,7 +378,8 @@
       update_time = #{updateTime,jdbcType=TIMESTAMP},
       remark = #{remark,jdbcType=VARCHAR},
       sale_money = #{saleMoney,jdbcType=VARCHAR},
-      purchase_money = #{purchaseMoney,jdbcType=VARCHAR}
+      purchase_money = #{purchaseMoney,jdbcType=VARCHAR},
+      min_consumer = #{minConsumer,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

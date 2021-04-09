@@ -1,0 +1,542 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bianjie.orm.mapper.PhonePackageMapper" >
+  <resultMap id="BaseResultMap" type="com.bianjie.orm.pojo.PhonePackage" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="mvno" property="mvno" jdbcType="CHAR" />
+    <result column="mno" property="mno" jdbcType="INTEGER" />
+    <result column="code" property="code" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="category" property="category" jdbcType="TINYINT" />
+    <result column="optional" property="optional" jdbcType="BIT" />
+    <result column="low_fee" property="lowFee" jdbcType="INTEGER" />
+    <result column="money" property="money" jdbcType="INTEGER" />
+    <result column="ext_code" property="extCode" jdbcType="VARCHAR" />
+    <result column="ext_name" property="extName" jdbcType="VARCHAR" />
+    <result column="ext_low_fee" property="extLowFee" jdbcType="INTEGER" />
+    <result column="ext_money" property="extMoney" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="type" property="type" jdbcType="TINYINT" />
+    <result column="nbr_type" property="nbrType" jdbcType="TINYINT" />
+    <result column="serv_type" property="servType" jdbcType="TINYINT" />
+    <result column="parent_code" property="parentCode" jdbcType="VARCHAR" />
+    <result column="parent_serv_type" property="parentServType" jdbcType="TINYINT" />
+    <result column="service_desc" property="serviceDesc" jdbcType="VARCHAR" />
+    <result column="default_flag" property="defaultFlag" jdbcType="BIT" />
+    <result column="tag" property="tag" jdbcType="CHAR" />
+    <result column="creator_id" property="creatorId" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="modifier_id" property="modifierId" jdbcType="INTEGER" />
+    <result column="modify_time" property="modifyTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, mvno, mno, code, name, category, optional, low_fee, money, ext_code, ext_name, 
+    ext_low_fee, ext_money, status, type, nbr_type, serv_type, parent_code, parent_serv_type, 
+    service_desc, default_flag, tag, creator_id, create_time, modifier_id, modify_time
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.bianjie.orm.pojo.PhonePackageExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from phone_package
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from phone_package
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from phone_package
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.bianjie.orm.pojo.PhonePackageExample" >
+    delete from phone_package
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.bianjie.orm.pojo.PhonePackage" >
+    insert into phone_package (id, mvno, mno, code, 
+      name, category, optional, 
+      low_fee, money, ext_code, 
+      ext_name, ext_low_fee, ext_money, 
+      status, type, nbr_type, 
+      serv_type, parent_code, parent_serv_type, 
+      service_desc, default_flag, tag, 
+      creator_id, create_time, modifier_id, 
+      modify_time)
+    values (#{id,jdbcType=INTEGER}, #{mvno,jdbcType=CHAR}, #{mno,jdbcType=INTEGER}, #{code,jdbcType=VARCHAR}, 
+      #{name,jdbcType=VARCHAR}, #{category,jdbcType=TINYINT}, #{optional,jdbcType=BIT}, 
+      #{lowFee,jdbcType=INTEGER}, #{money,jdbcType=INTEGER}, #{extCode,jdbcType=VARCHAR}, 
+      #{extName,jdbcType=VARCHAR}, #{extLowFee,jdbcType=INTEGER}, #{extMoney,jdbcType=INTEGER}, 
+      #{status,jdbcType=INTEGER}, #{type,jdbcType=TINYINT}, #{nbrType,jdbcType=TINYINT}, 
+      #{servType,jdbcType=TINYINT}, #{parentCode,jdbcType=VARCHAR}, #{parentServType,jdbcType=TINYINT}, 
+      #{serviceDesc,jdbcType=VARCHAR}, #{defaultFlag,jdbcType=BIT}, #{tag,jdbcType=CHAR}, 
+      #{creatorId,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, #{modifierId,jdbcType=INTEGER}, 
+      #{modifyTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.bianjie.orm.pojo.PhonePackage" >
+    insert into phone_package
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="mvno != null" >
+        mvno,
+      </if>
+      <if test="mno != null" >
+        mno,
+      </if>
+      <if test="code != null" >
+        code,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="category != null" >
+        category,
+      </if>
+      <if test="optional != null" >
+        optional,
+      </if>
+      <if test="lowFee != null" >
+        low_fee,
+      </if>
+      <if test="money != null" >
+        money,
+      </if>
+      <if test="extCode != null" >
+        ext_code,
+      </if>
+      <if test="extName != null" >
+        ext_name,
+      </if>
+      <if test="extLowFee != null" >
+        ext_low_fee,
+      </if>
+      <if test="extMoney != null" >
+        ext_money,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="nbrType != null" >
+        nbr_type,
+      </if>
+      <if test="servType != null" >
+        serv_type,
+      </if>
+      <if test="parentCode != null" >
+        parent_code,
+      </if>
+      <if test="parentServType != null" >
+        parent_serv_type,
+      </if>
+      <if test="serviceDesc != null" >
+        service_desc,
+      </if>
+      <if test="defaultFlag != null" >
+        default_flag,
+      </if>
+      <if test="tag != null" >
+        tag,
+      </if>
+      <if test="creatorId != null" >
+        creator_id,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="modifierId != null" >
+        modifier_id,
+      </if>
+      <if test="modifyTime != null" >
+        modify_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="mvno != null" >
+        #{mvno,jdbcType=CHAR},
+      </if>
+      <if test="mno != null" >
+        #{mno,jdbcType=INTEGER},
+      </if>
+      <if test="code != null" >
+        #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="category != null" >
+        #{category,jdbcType=TINYINT},
+      </if>
+      <if test="optional != null" >
+        #{optional,jdbcType=BIT},
+      </if>
+      <if test="lowFee != null" >
+        #{lowFee,jdbcType=INTEGER},
+      </if>
+      <if test="money != null" >
+        #{money,jdbcType=INTEGER},
+      </if>
+      <if test="extCode != null" >
+        #{extCode,jdbcType=VARCHAR},
+      </if>
+      <if test="extName != null" >
+        #{extName,jdbcType=VARCHAR},
+      </if>
+      <if test="extLowFee != null" >
+        #{extLowFee,jdbcType=INTEGER},
+      </if>
+      <if test="extMoney != null" >
+        #{extMoney,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=TINYINT},
+      </if>
+      <if test="nbrType != null" >
+        #{nbrType,jdbcType=TINYINT},
+      </if>
+      <if test="servType != null" >
+        #{servType,jdbcType=TINYINT},
+      </if>
+      <if test="parentCode != null" >
+        #{parentCode,jdbcType=VARCHAR},
+      </if>
+      <if test="parentServType != null" >
+        #{parentServType,jdbcType=TINYINT},
+      </if>
+      <if test="serviceDesc != null" >
+        #{serviceDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="defaultFlag != null" >
+        #{defaultFlag,jdbcType=BIT},
+      </if>
+      <if test="tag != null" >
+        #{tag,jdbcType=CHAR},
+      </if>
+      <if test="creatorId != null" >
+        #{creatorId,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifierId != null" >
+        #{modifierId,jdbcType=INTEGER},
+      </if>
+      <if test="modifyTime != null" >
+        #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.bianjie.orm.pojo.PhonePackageExample" resultType="java.lang.Integer" >
+    select count(*) from phone_package
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update phone_package
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.mvno != null" >
+        mvno = #{record.mvno,jdbcType=CHAR},
+      </if>
+      <if test="record.mno != null" >
+        mno = #{record.mno,jdbcType=INTEGER},
+      </if>
+      <if test="record.code != null" >
+        code = #{record.code,jdbcType=VARCHAR},
+      </if>
+      <if test="record.name != null" >
+        name = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.category != null" >
+        category = #{record.category,jdbcType=TINYINT},
+      </if>
+      <if test="record.optional != null" >
+        optional = #{record.optional,jdbcType=BIT},
+      </if>
+      <if test="record.lowFee != null" >
+        low_fee = #{record.lowFee,jdbcType=INTEGER},
+      </if>
+      <if test="record.money != null" >
+        money = #{record.money,jdbcType=INTEGER},
+      </if>
+      <if test="record.extCode != null" >
+        ext_code = #{record.extCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.extName != null" >
+        ext_name = #{record.extName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.extLowFee != null" >
+        ext_low_fee = #{record.extLowFee,jdbcType=INTEGER},
+      </if>
+      <if test="record.extMoney != null" >
+        ext_money = #{record.extMoney,jdbcType=INTEGER},
+      </if>
+      <if test="record.status != null" >
+        status = #{record.status,jdbcType=INTEGER},
+      </if>
+      <if test="record.type != null" >
+        type = #{record.type,jdbcType=TINYINT},
+      </if>
+      <if test="record.nbrType != null" >
+        nbr_type = #{record.nbrType,jdbcType=TINYINT},
+      </if>
+      <if test="record.servType != null" >
+        serv_type = #{record.servType,jdbcType=TINYINT},
+      </if>
+      <if test="record.parentCode != null" >
+        parent_code = #{record.parentCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.parentServType != null" >
+        parent_serv_type = #{record.parentServType,jdbcType=TINYINT},
+      </if>
+      <if test="record.serviceDesc != null" >
+        service_desc = #{record.serviceDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="record.defaultFlag != null" >
+        default_flag = #{record.defaultFlag,jdbcType=BIT},
+      </if>
+      <if test="record.tag != null" >
+        tag = #{record.tag,jdbcType=CHAR},
+      </if>
+      <if test="record.creatorId != null" >
+        creator_id = #{record.creatorId,jdbcType=INTEGER},
+      </if>
+      <if test="record.createTime != null" >
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.modifierId != null" >
+        modifier_id = #{record.modifierId,jdbcType=INTEGER},
+      </if>
+      <if test="record.modifyTime != null" >
+        modify_time = #{record.modifyTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update phone_package
+    set id = #{record.id,jdbcType=INTEGER},
+      mvno = #{record.mvno,jdbcType=CHAR},
+      mno = #{record.mno,jdbcType=INTEGER},
+      code = #{record.code,jdbcType=VARCHAR},
+      name = #{record.name,jdbcType=VARCHAR},
+      category = #{record.category,jdbcType=TINYINT},
+      optional = #{record.optional,jdbcType=BIT},
+      low_fee = #{record.lowFee,jdbcType=INTEGER},
+      money = #{record.money,jdbcType=INTEGER},
+      ext_code = #{record.extCode,jdbcType=VARCHAR},
+      ext_name = #{record.extName,jdbcType=VARCHAR},
+      ext_low_fee = #{record.extLowFee,jdbcType=INTEGER},
+      ext_money = #{record.extMoney,jdbcType=INTEGER},
+      status = #{record.status,jdbcType=INTEGER},
+      type = #{record.type,jdbcType=TINYINT},
+      nbr_type = #{record.nbrType,jdbcType=TINYINT},
+      serv_type = #{record.servType,jdbcType=TINYINT},
+      parent_code = #{record.parentCode,jdbcType=VARCHAR},
+      parent_serv_type = #{record.parentServType,jdbcType=TINYINT},
+      service_desc = #{record.serviceDesc,jdbcType=VARCHAR},
+      default_flag = #{record.defaultFlag,jdbcType=BIT},
+      tag = #{record.tag,jdbcType=CHAR},
+      creator_id = #{record.creatorId,jdbcType=INTEGER},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      modifier_id = #{record.modifierId,jdbcType=INTEGER},
+      modify_time = #{record.modifyTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.bianjie.orm.pojo.PhonePackage" >
+    update phone_package
+    <set >
+      <if test="mvno != null" >
+        mvno = #{mvno,jdbcType=CHAR},
+      </if>
+      <if test="mno != null" >
+        mno = #{mno,jdbcType=INTEGER},
+      </if>
+      <if test="code != null" >
+        code = #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="category != null" >
+        category = #{category,jdbcType=TINYINT},
+      </if>
+      <if test="optional != null" >
+        optional = #{optional,jdbcType=BIT},
+      </if>
+      <if test="lowFee != null" >
+        low_fee = #{lowFee,jdbcType=INTEGER},
+      </if>
+      <if test="money != null" >
+        money = #{money,jdbcType=INTEGER},
+      </if>
+      <if test="extCode != null" >
+        ext_code = #{extCode,jdbcType=VARCHAR},
+      </if>
+      <if test="extName != null" >
+        ext_name = #{extName,jdbcType=VARCHAR},
+      </if>
+      <if test="extLowFee != null" >
+        ext_low_fee = #{extLowFee,jdbcType=INTEGER},
+      </if>
+      <if test="extMoney != null" >
+        ext_money = #{extMoney,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=TINYINT},
+      </if>
+      <if test="nbrType != null" >
+        nbr_type = #{nbrType,jdbcType=TINYINT},
+      </if>
+      <if test="servType != null" >
+        serv_type = #{servType,jdbcType=TINYINT},
+      </if>
+      <if test="parentCode != null" >
+        parent_code = #{parentCode,jdbcType=VARCHAR},
+      </if>
+      <if test="parentServType != null" >
+        parent_serv_type = #{parentServType,jdbcType=TINYINT},
+      </if>
+      <if test="serviceDesc != null" >
+        service_desc = #{serviceDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="defaultFlag != null" >
+        default_flag = #{defaultFlag,jdbcType=BIT},
+      </if>
+      <if test="tag != null" >
+        tag = #{tag,jdbcType=CHAR},
+      </if>
+      <if test="creatorId != null" >
+        creator_id = #{creatorId,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifierId != null" >
+        modifier_id = #{modifierId,jdbcType=INTEGER},
+      </if>
+      <if test="modifyTime != null" >
+        modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.bianjie.orm.pojo.PhonePackage" >
+    update phone_package
+    set mvno = #{mvno,jdbcType=CHAR},
+      mno = #{mno,jdbcType=INTEGER},
+      code = #{code,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      category = #{category,jdbcType=TINYINT},
+      optional = #{optional,jdbcType=BIT},
+      low_fee = #{lowFee,jdbcType=INTEGER},
+      money = #{money,jdbcType=INTEGER},
+      ext_code = #{extCode,jdbcType=VARCHAR},
+      ext_name = #{extName,jdbcType=VARCHAR},
+      ext_low_fee = #{extLowFee,jdbcType=INTEGER},
+      ext_money = #{extMoney,jdbcType=INTEGER},
+      status = #{status,jdbcType=INTEGER},
+      type = #{type,jdbcType=TINYINT},
+      nbr_type = #{nbrType,jdbcType=TINYINT},
+      serv_type = #{servType,jdbcType=TINYINT},
+      parent_code = #{parentCode,jdbcType=VARCHAR},
+      parent_serv_type = #{parentServType,jdbcType=TINYINT},
+      service_desc = #{serviceDesc,jdbcType=VARCHAR},
+      default_flag = #{defaultFlag,jdbcType=BIT},
+      tag = #{tag,jdbcType=CHAR},
+      creator_id = #{creatorId,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      modifier_id = #{modifierId,jdbcType=INTEGER},
+      modify_time = #{modifyTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

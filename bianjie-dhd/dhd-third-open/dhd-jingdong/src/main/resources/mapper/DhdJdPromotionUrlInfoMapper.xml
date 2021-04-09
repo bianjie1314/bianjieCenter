@@ -1,0 +1,338 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dhd.third.jingdong.mapper.DhdJdPromotionUrlInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.dhd.third.jingdong.pojo.DhdJdPromotionUrlInfo" >
+    <id column="sid" property="sid" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="material_id" property="materialId" jdbcType="VARCHAR" />
+    <result column="site_id" property="siteId" jdbcType="VARCHAR" />
+    <result column="position_id" property="positionId" jdbcType="BIGINT" />
+    <result column="sub_union_id" property="subUnionId" jdbcType="VARCHAR" />
+    <result column="ext1" property="ext1" jdbcType="VARCHAR" />
+    <result column="pid" property="pid" jdbcType="VARCHAR" />
+    <result column="coupon_url" property="couponUrl" jdbcType="VARCHAR" />
+    <result column="gift_coupon_key" property="giftCouponKey" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="create_id" property="createId" jdbcType="INTEGER" />
+    <result column="click_url" property="clickUrl" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    sid, status, material_id, site_id, position_id, sub_union_id, ext1, pid, coupon_url, 
+    gift_coupon_key, create_time, create_id, click_url
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.dhd.third.jingdong.pojo.DhdJdPromotionUrlInfoExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from dhd_jd_promotion_url_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from dhd_jd_promotion_url_info
+    where sid = #{sid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from dhd_jd_promotion_url_info
+    where sid = #{sid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.dhd.third.jingdong.pojo.DhdJdPromotionUrlInfoExample" >
+    delete from dhd_jd_promotion_url_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.dhd.third.jingdong.pojo.DhdJdPromotionUrlInfo" >
+    insert into dhd_jd_promotion_url_info (sid, status, material_id, 
+      site_id, position_id, sub_union_id, 
+      ext1, pid, coupon_url, 
+      gift_coupon_key, create_time, create_id, 
+      click_url)
+    values (#{sid,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}, #{materialId,jdbcType=VARCHAR}, 
+      #{siteId,jdbcType=VARCHAR}, #{positionId,jdbcType=BIGINT}, #{subUnionId,jdbcType=VARCHAR}, 
+      #{ext1,jdbcType=VARCHAR}, #{pid,jdbcType=VARCHAR}, #{couponUrl,jdbcType=VARCHAR}, 
+      #{giftCouponKey,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{createId,jdbcType=INTEGER}, 
+      #{clickUrl,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.dhd.third.jingdong.pojo.DhdJdPromotionUrlInfo" >
+    insert into dhd_jd_promotion_url_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="sid != null" >
+        sid,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="materialId != null" >
+        material_id,
+      </if>
+      <if test="siteId != null" >
+        site_id,
+      </if>
+      <if test="positionId != null" >
+        position_id,
+      </if>
+      <if test="subUnionId != null" >
+        sub_union_id,
+      </if>
+      <if test="ext1 != null" >
+        ext1,
+      </if>
+      <if test="pid != null" >
+        pid,
+      </if>
+      <if test="couponUrl != null" >
+        coupon_url,
+      </if>
+      <if test="giftCouponKey != null" >
+        gift_coupon_key,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="createId != null" >
+        create_id,
+      </if>
+      <if test="clickUrl != null" >
+        click_url,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="sid != null" >
+        #{sid,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="materialId != null" >
+        #{materialId,jdbcType=VARCHAR},
+      </if>
+      <if test="siteId != null" >
+        #{siteId,jdbcType=VARCHAR},
+      </if>
+      <if test="positionId != null" >
+        #{positionId,jdbcType=BIGINT},
+      </if>
+      <if test="subUnionId != null" >
+        #{subUnionId,jdbcType=VARCHAR},
+      </if>
+      <if test="ext1 != null" >
+        #{ext1,jdbcType=VARCHAR},
+      </if>
+      <if test="pid != null" >
+        #{pid,jdbcType=VARCHAR},
+      </if>
+      <if test="couponUrl != null" >
+        #{couponUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="giftCouponKey != null" >
+        #{giftCouponKey,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createId != null" >
+        #{createId,jdbcType=INTEGER},
+      </if>
+      <if test="clickUrl != null" >
+        #{clickUrl,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.dhd.third.jingdong.pojo.DhdJdPromotionUrlInfoExample" resultType="java.lang.Integer" >
+    select count(*) from dhd_jd_promotion_url_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update dhd_jd_promotion_url_info
+    <set >
+      <if test="record.sid != null" >
+        sid = #{record.sid,jdbcType=INTEGER},
+      </if>
+      <if test="record.status != null" >
+        status = #{record.status,jdbcType=INTEGER},
+      </if>
+      <if test="record.materialId != null" >
+        material_id = #{record.materialId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.siteId != null" >
+        site_id = #{record.siteId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.positionId != null" >
+        position_id = #{record.positionId,jdbcType=BIGINT},
+      </if>
+      <if test="record.subUnionId != null" >
+        sub_union_id = #{record.subUnionId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ext1 != null" >
+        ext1 = #{record.ext1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pid != null" >
+        pid = #{record.pid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.couponUrl != null" >
+        coupon_url = #{record.couponUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.giftCouponKey != null" >
+        gift_coupon_key = #{record.giftCouponKey,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null" >
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.createId != null" >
+        create_id = #{record.createId,jdbcType=INTEGER},
+      </if>
+      <if test="record.clickUrl != null" >
+        click_url = #{record.clickUrl,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update dhd_jd_promotion_url_info
+    set sid = #{record.sid,jdbcType=INTEGER},
+      status = #{record.status,jdbcType=INTEGER},
+      material_id = #{record.materialId,jdbcType=VARCHAR},
+      site_id = #{record.siteId,jdbcType=VARCHAR},
+      position_id = #{record.positionId,jdbcType=BIGINT},
+      sub_union_id = #{record.subUnionId,jdbcType=VARCHAR},
+      ext1 = #{record.ext1,jdbcType=VARCHAR},
+      pid = #{record.pid,jdbcType=VARCHAR},
+      coupon_url = #{record.couponUrl,jdbcType=VARCHAR},
+      gift_coupon_key = #{record.giftCouponKey,jdbcType=VARCHAR},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      create_id = #{record.createId,jdbcType=INTEGER},
+      click_url = #{record.clickUrl,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.dhd.third.jingdong.pojo.DhdJdPromotionUrlInfo" >
+    update dhd_jd_promotion_url_info
+    <set >
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="materialId != null" >
+        material_id = #{materialId,jdbcType=VARCHAR},
+      </if>
+      <if test="siteId != null" >
+        site_id = #{siteId,jdbcType=VARCHAR},
+      </if>
+      <if test="positionId != null" >
+        position_id = #{positionId,jdbcType=BIGINT},
+      </if>
+      <if test="subUnionId != null" >
+        sub_union_id = #{subUnionId,jdbcType=VARCHAR},
+      </if>
+      <if test="ext1 != null" >
+        ext1 = #{ext1,jdbcType=VARCHAR},
+      </if>
+      <if test="pid != null" >
+        pid = #{pid,jdbcType=VARCHAR},
+      </if>
+      <if test="couponUrl != null" >
+        coupon_url = #{couponUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="giftCouponKey != null" >
+        gift_coupon_key = #{giftCouponKey,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createId != null" >
+        create_id = #{createId,jdbcType=INTEGER},
+      </if>
+      <if test="clickUrl != null" >
+        click_url = #{clickUrl,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where sid = #{sid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.dhd.third.jingdong.pojo.DhdJdPromotionUrlInfo" >
+    update dhd_jd_promotion_url_info
+    set status = #{status,jdbcType=INTEGER},
+      material_id = #{materialId,jdbcType=VARCHAR},
+      site_id = #{siteId,jdbcType=VARCHAR},
+      position_id = #{positionId,jdbcType=BIGINT},
+      sub_union_id = #{subUnionId,jdbcType=VARCHAR},
+      ext1 = #{ext1,jdbcType=VARCHAR},
+      pid = #{pid,jdbcType=VARCHAR},
+      coupon_url = #{couponUrl,jdbcType=VARCHAR},
+      gift_coupon_key = #{giftCouponKey,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      create_id = #{createId,jdbcType=INTEGER},
+      click_url = #{clickUrl,jdbcType=VARCHAR}
+    where sid = #{sid,jdbcType=INTEGER}
+  </update>
+</mapper>

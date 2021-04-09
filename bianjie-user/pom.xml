@@ -8,21 +8,22 @@
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
+
     <groupId>com.bianjie</groupId>
-    <artifactId>user</artifactId>
+    <artifactId>bianjie-user</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>user</name>
-    <description>Demo project for Spring Boot</description>
+    <name>bianjie-user</name>
+    <description>用户</description>
 
     <dependencies>
         <dependency>
             <groupId>com.bianjie</groupId>
-            <artifactId>common</artifactId>
+            <artifactId>bianjie-common</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>com.bianjie</groupId>
-            <artifactId>service</artifactId>
+            <artifactId>bianjie-service</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
 

@@ -1084,6 +1084,76 @@ public class PhoneInfoExample {
             addCriterion("purchase_money not between", value1, value2, "purchaseMoney");
             return (Criteria) this;
         }
+
+        public Criteria andMinConsumerIsNull() {
+            addCriterion("min_consumer is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andMinConsumerIsNotNull() {
+            addCriterion("min_consumer is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andMinConsumerEqualTo(String value) {
+            addCriterion("min_consumer =", value, "minConsumer");
+            return (Criteria) this;
+        }
+
+        public Criteria andMinConsumerNotEqualTo(String value) {
+            addCriterion("min_consumer <>", value, "minConsumer");
+            return (Criteria) this;
+        }
+
+        public Criteria andMinConsumerGreaterThan(String value) {
+            addCriterion("min_consumer >", value, "minConsumer");
+            return (Criteria) this;
+        }
+
+        public Criteria andMinConsumerGreaterThanOrEqualTo(String value) {
+            addCriterion("min_consumer >=", value, "minConsumer");
+            return (Criteria) this;
+        }
+
+        public Criteria andMinConsumerLessThan(String value) {
+            addCriterion("min_consumer <", value, "minConsumer");
+            return (Criteria) this;
+        }
+
+        public Criteria andMinConsumerLessThanOrEqualTo(String value) {
+            addCriterion("min_consumer <=", value, "minConsumer");
+            return (Criteria) this;
+        }
+
+        public Criteria andMinConsumerLike(String value) {
+            addCriterion("min_consumer like", value, "minConsumer");
+            return (Criteria) this;
+        }
+
+        public Criteria andMinConsumerNotLike(String value) {
+            addCriterion("min_consumer not like", value, "minConsumer");
+            return (Criteria) this;
+        }
+
+        public Criteria andMinConsumerIn(List<String> values) {
+            addCriterion("min_consumer in", values, "minConsumer");
+            return (Criteria) this;
+        }
+
+        public Criteria andMinConsumerNotIn(List<String> values) {
+            addCriterion("min_consumer not in", values, "minConsumer");
+            return (Criteria) this;
+        }
+
+        public Criteria andMinConsumerBetween(String value1, String value2) {
+            addCriterion("min_consumer between", value1, value2, "minConsumer");
+            return (Criteria) this;
+        }
+
+        public Criteria andMinConsumerNotBetween(String value1, String value2) {
+            addCriterion("min_consumer not between", value1, value2, "minConsumer");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {

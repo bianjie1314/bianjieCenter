@@ -7,21 +7,23 @@
         <groupId>com.bianjie</groupId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
+
     <groupId>com.bianjie</groupId>
-    <artifactId>phone</artifactId>
+    <artifactId>bianjie-phone</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>phone</name>
+    <name>bianjie-phone</name>
     <description>通讯有关资源模块</description>
+
 
     <dependencies>
         <dependency>
             <groupId>com.bianjie</groupId>
-            <artifactId>common</artifactId>
+            <artifactId>bianjie-common</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>com.bianjie</groupId>
-            <artifactId>service</artifactId>
+            <artifactId>bianjie-service</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
 
@@ -29,7 +31,15 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
-
     </dependencies>
 
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
 </project>

@@ -33,6 +33,8 @@ public class PhoneInfo {
 
     private String purchaseMoney;
 
+    private String minConsumer;
+
     public Integer getId() {
         return id;
     }
@@ -151,5 +153,13 @@ public class PhoneInfo {
 
     public void setPurchaseMoney(String purchaseMoney) {
         this.purchaseMoney = purchaseMoney == null ? null : purchaseMoney.trim();
+    }
+
+    public String getMinConsumer() {
+        return minConsumer;
+    }
+
+    public void setMinConsumer(String minConsumer) {
+        this.minConsumer = minConsumer == null ? null : minConsumer.trim();
     }
 }

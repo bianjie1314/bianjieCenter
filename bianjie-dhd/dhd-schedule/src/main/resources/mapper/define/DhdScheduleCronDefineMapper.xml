@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dhd.schedule.mapper.define.DhdScheduleCronDefineMapper" >
+
+    <sql id="table_name">dhd_schedule_cron</sql>
+
+    <select id="selectByCronKey" parameterType="String" resultType="com.dhd.schedule.pojo.DhdScheduleCron" >
+        select * from <include refid="table_name" /> where cron_key = #{cronKey}
+    </select>
+
+    <select id="selectByMap" resultType="com.dhd.schedule.pojo.DhdScheduleCron" >
+        select * from <include refid="table_name" />
+        <where>
+            <if test="cronKey != null">
+                and cron_key = #{cronKey}
+            </if>
+        </where>
+    </select>
+
+</mapper>

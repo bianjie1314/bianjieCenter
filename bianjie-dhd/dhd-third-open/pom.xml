@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>bianjie-dhd</artifactId>
+        <groupId>com.dhd</groupId>
+        <version>0.0.1-SNAPSHOT</version>
+        <relativePath>../pom.xml</relativePath>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.bianjie</groupId>
+    <artifactId>dhd-third-open</artifactId>
+    <packaging>pom</packaging>
+    <description>业务模块</description>
+    <modules>
+        <module>dhd-jingdong</module>
+        <module>dhd-taobao</module>
+    </modules>
+
+</project>

@@ -10,15 +10,19 @@ public class RespBody {
     private Object data;
 
     public RespBody() {
-        this(RespCode.CODE_10200.getCode(), RespCode.CODE_10200.getMsg(), new JSONObject());
+        this(RespCode.CODE_200.getCode(), RespCode.CODE_200.getMsg(), new JSONObject());
     }
 
     public RespBody(Object data) {
-        this(RespCode.CODE_10200.getCode(), RespCode.CODE_10200.getMsg(), data);
+        this(RespCode.CODE_200.getCode(), RespCode.CODE_200.getMsg(), data);
     }
 
     public RespBody(RespCode code) {
         this(code.getCode(), code.getMsg(), new JSONObject());
+    }
+
+    public RespBody(int code,String msg) {
+        this(code, msg, new JSONObject());
     }
 
     public RespBody(RespCode code, Object data) {
